@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSP Traders — Premium Fresh Produce | Madurai</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- CSS Reset & Base --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --forest: #1b4332;
+      --farm: #2d6a4f;
+      --tan: #f4f1de;
+      --terracotta: #e07a5f;
+      --slate: #2b2d42;
+      --white: #ffffff;
+      --off-white: #faf9f6;
+      --light-border: #e0e0d8;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.08);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --transition: all 0.25s ease;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--off-white);
+      color: var(--slate);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--forest);
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #e8e6df; }
+    ::-webkit-scrollbar-thumb { background: var(--farm); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--forest); }
+
+    /* --- Announcement Bar (Running Mode) --- */
+    .announcement-bar {
+      background: var(--forest);
+      color: var(--tan);
+      padding: 10px 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .announcement-track {
+      display: inline-block;
+      animation: scrollLeft 28s linear infinite;
+      padding-left: 100%;
+    }
+
+    .announcement-track span {
+      margin-right: 3rem;
+      display: inline-block;
+    }
+
+    @keyframes scrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* --- Sticky Header --- */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(250, 249, 246, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--light-border);
+      padding: 12px 0;
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .logo-badge {
+      background: var(--forest);
+      color: var(--tan);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 30px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--forest);
+      line-height: 1;
+    }
+
+    .logo-text small {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--farm);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--slate);
+    }
+
+    .nav-links a {
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover { color: var(--farm); }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--terracotta);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    /* Mode Toggle Switch */
+    .mode-toggle {
+      display: flex;
+      align-items: center;
+      background: #e8e6df;
+      border-radius: 30px;
+      padding: 3px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .mode-btn {
+      padding: 6px 14px;
+      border-radius: 30px;
+      transition: var(--transition);
+      color: var(--slate);
+      white-space: nowrap;
+    }
+
+    .mode-btn.active {
+      background: var(--forest);
+      color: var(--tan);
+      box-shadow: 0 2px 8px rgba(27, 67, 50, 0.2);
+    }
+
+    .cart-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--forest);
+      color: var(--tan);
+      transition: var(--transition);
+    }
+
+    .cart-btn:hover { background: var(--farm); transform: scale(1.05); }
+
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--terracotta);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--off-white);
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 60px 24px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: var(--forest);
+    }
+
+    .hero-content h1 span {
+      color: var(--terracotta);
+      position: relative;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #4a4d5e;
+      margin-bottom: 28px;
+      max-width: 520px;
+    }
+
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-bottom: 32px;
+    }
+
+    .trust-badges span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--farm);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trust-badges span::before {
+      content: '✓';
+      color: var(--terracotta);
+      font-weight: 800;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      letter-spacing: 0.2px;
+    }
+
+    .btn-primary {
+      background: var(--forest);
+      color: var(--tan);
+      box-shadow: 0 8px 20px rgba(27, 67, 50, 0.25);
+    }
+
+    .btn-primary:hover { background: var(--farm); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(27, 67, 50, 0.3); }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--forest);
+      color: var(--forest);
+    }
+
+    .btn-outline:hover { background: var(--forest); color: var(--tan); transform: translateY(-2px); }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp:hover { background: #1da851; transform: translateY(-2px); }
+
+    .hero-image {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4/3;
+      background: var(--tan);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* --- Live Pricing Banner --- */
+    .pricing-banner {
+      background: var(--tan);
+      border-top: 1px solid var(--light-border);
+      border-bottom: 1px solid var(--light-border);
+      padding: 24px 0;
+    }
+
+    .pricing-banner-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .pricing-banner h3 {
+      font-size: 1.2rem;
+      color: var(--forest);
+    }
+
+    .pricing-banner h3 small {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--farm);
+      margin-top: 2px;
+    }
+
+    .mode-selector-lg {
+      display: flex;
+      background: white;
+      border-radius: 40px;
+      padding: 4px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--light-border);
+    }
+
+    .mode-selector-lg button {
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      color: var(--slate);
+    }
+
+    .mode-selector-lg button.active {
+      background: var(--forest);
+      color: var(--tan);
+    }
+
+    /* --- Product Catalog --- */
+    .catalog {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      color: #6b6e7e;
+      font-size: 1rem;
+    }
+
+    .category-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      padding: 10px 22px;
+      border-radius: 40px;
+      background: white;
+      border: 1px solid var(--light-border);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      color: var(--slate);
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--forest);
+      color: var(--tan);
+      border-color: var(--forest);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--light-border);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      background: var(--tan);
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img { transform: scale(1.08); }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--terracotta);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .product-badge.bestseller { background: var(--forest); }
+    .product-badge.bulk { background: #b5832b; }
+
+    .product-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+      color: var(--forest);
+    }
+
+    .product-tamil {
+      font-size: 0.8rem;
+      color: var(--farm);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .product-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      margin-top: auto;
+    }
+
+    .price-display {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--forest);
+    }
+
+    .price-display small {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #6b6e7e;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .unit-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--slate);
+      background: var(--tan);
+      padding: 3px 10px;
+      border-radius: 30px;
+    }
+
+    .qty-selector {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--light-border);
+      border-radius: 40px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .qty-selector button {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--forest);
+      background: var(--tan);
+      transition: var(--transition);
+    }
+
+    .qty-selector button:hover { background: var(--farm); color: white; }
+
+    .qty-selector input {
+      width: 50px;
+      text-align: center;
+      border: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--slate);
+      background: white;
+      padding: 8px 0;
+      outline: none;
+    }
+
+    .add-to-order {
+      width: 100%;
+      padding: 12px;
+      background: var(--forest);
+      color: var(--tan);
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      letter-spacing: 0.3px;
+    }
+
+    .add-to-order:hover { background: var(--farm); }
+
+    /* --- Wholesale Calculator --- */
+    .calculator-section {
+      background: var(--tan);
+      padding: 60px 24px;
+      border-top: 1px solid var(--light-border);
+      border-bottom: 1px solid var(--light-border);
+    }
+
+    .calculator-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--light-border);
+    }
+
+    .calculator-inner h2 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .calculator-inner > p {
+      text-align: center;
+      color: #6b6e7e;
+      margin-bottom: 32px;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .calc-field label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      color: var(--forest);
+    }
+
+    .calc-field select, .calc-field input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--slate);
+      background: var(--off-white);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .calc-field select:focus, .calc-field input:focus {
+      border-color: var(--farm);
+      box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+    }
+
+    .calc-result {
+      background: var(--forest);
+      color: var(--tan);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .calc-result .label { font-size: 0.9rem; opacity: 0.8; }
+    .calc-result .value { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; }
+
+    /* --- Why Choose --- */
+    .why-us {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+      margin-top: 48px;
+    }
+
+    .why-card {
+      background: white;
+      padding: 32px 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--light-border);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .why-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--farm);
+    }
+
+    .why-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--tan);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 1.6rem;
+    }
+
+    .why-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .why-card p {
+      font-size: 0.9rem;
+      color: #6b6e7e;
+    }
+
+    /* --- Cart Drawer --- */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1100;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .cart-overlay.open { opacity: 1; visibility: visible; }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 420px;
+      max-width: 92vw;
+      background: var(--off-white);
+      z-index: 1200;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-drawer.open { transform: translateX(0); }
+
+    .cart-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--light-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+    }
+
+    .cart-header h3 { font-size: 1.3rem; }
+
+    .cart-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--tan);
+      color: var(--forest);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .cart-close:hover { background: var(--terracotta); color: white; }
+
+    .cart-items {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: #9a9caa;
+    }
+
+    .cart-empty span { font-size: 3rem; display: block; margin-bottom: 12px; }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--light-border);
+      align-items: center;
+    }
+
+    .cart-item-img {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .cart-item-info { flex-grow: 1; min-width: 0; }
+    .cart-item-info h4 { font-size: 0.95rem; margin-bottom: 2px; }
+    .cart-item-info small { font-size: 0.75rem; color: #6b6e7e; }
+
+    .cart-item-price {
+      font-weight: 700;
+      color: var(--forest);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .cart-item-remove {
+      color: #b0b2c0;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      padding: 4px;
+    }
+
+    .cart-item-remove:hover { color: var(--terracotta); }
+
+    .cart-footer {
+      padding: 20px 24px 28px;
+      border-top: 1px solid var(--light-border);
+      background: white;
+    }
+
+    .order-type-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .order-type-btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--light-border);
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: var(--transition);
+      background: var(--off-white);
+      color: var(--slate);
+    }
+
+    .order-type-btn.active {
+      background: var(--forest);
+      color: var(--tan);
+      border-color: var(--forest);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+
+    .cart-total .total-value {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--forest);
+    }
+
+    .whatsapp-order-btn {
+      width: 100%;
+      padding: 16px;
+      background: #25D366;
+      color: white;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .whatsapp-order-btn:hover { background: #1da851; }
+
+    .whatsapp-order-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    /* --- Footer --- */
+    .footer {
+      background: var(--forest);
+      color: var(--tan);
+      padding: 60px 24px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(244, 241, 222, 0.15);
+    }
+
+    .footer h4 {
+      color: var(--tan);
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+
+    .footer p, .footer li {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      line-height: 1.8;
+    }
+
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: 6px; }
+
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; gap: 32px; }
+      .hero-content h1 { font-size: 2.2rem; }
+      .hero-image { max-width: 600px; margin: 0 auto; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .header-inner { flex-wrap: wrap; gap: 12px; }
+      .nav-links { display: none; }
+      .hero-content h1 { font-size: 1.8rem; }
+      .calc-grid { grid-template-columns: 1fr; }
+      .calculator-inner { padding: 24px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .product-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+      .mode-toggle { order: 3; }
+      .cart-drawer { width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .hero-content h1 { font-size: 1.5rem; }
+      .pricing-banner-inner { flex-direction: column; text-align: center; }
+      .mode-selector-lg { width: 100%; }
+      .mode-selector-lg button { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="announcement-track">
+      <span>🌾 Welcome to SSP Traders — Direct Farm Supplies for Wholesale Buyers, Hotels, and Retail Customers | Call/WhatsApp: +91 98765 43210</span>
+      <span>🌾 Fresh Stock Daily — Small Onion, Big Onion, Garlic, Ginger, Potato & More</span>
+      <span>🌾 Welcome to SSP Traders — Direct Farm Supplies for Wholesale Buyers, Hotels, and Retail Customers | Call/WhatsApp: +91 98765 43210</span>
+      <span>🌾 Fresh Stock Daily — Small Onion, Big Onion, Garlic, Ginger, Potato & More</span>
+    </div>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-badge">Est. Madurai</div>
+        <div class="logo-text">SSP TRADERS<small>Premium Agricultural Produce</small></div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#wholesale">Wholesale Inquiry</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#contact">Contact Us</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="mode-toggle" id="headerModeToggle">
+          <button class="mode-btn active" data-mode="retail">Retail (Kg)</button>
+          <button class="mode-btn" data-mode="wholesale">Wholesale (Bag)</button>
+        </div>
+        <button class="cart-btn" id="cartToggleBtn" aria-label="Open Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Fresh Produce Delivered <span>Direct From Farms</span> to Your Doorstep & Markets.</h1>
+      <p>Specialists in Small Onion, Big Onion, Garlic, Ginger, Potatoes & Fresh Daily Vegetables at Unbeatable Wholesale & Retail Rates.</p>
+      <div class="trust-badges">
+        <span>Direct Farm Sourcing</span>
+        <span>Daily Fresh Stock</span>
+        <span>Bulk Bag Packaging Available</span>
+        <span>Fast Delivery in & around Madurai</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#products" class="btn btn-primary">View Fresh Catalog</a>
+        <a href="https://wa.me/919876543210?text=Hi%20SSP%20Traders%2C%20I%20want%20to%20enquire%20about%20wholesale%20produce." target="_blank" class="btn btn-whatsapp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.
